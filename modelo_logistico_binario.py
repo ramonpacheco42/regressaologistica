@@ -237,3 +237,38 @@ plt.xlabel("Especificidade", fontsize=14)
 plt.ylabel("Sensitividade", fontsize=14)
 plt.show()
 # %%
+#############################################################################
+#                      REGRESSÃO LOGÍSTICA MULTINOMIAL                      #
+#                EXEMPLO 04 - CARREGAMENTO DA BASE DE DADOS                 #
+#############################################################################
+
+df_atrasado_multinomial = pd.read_csv('data/atrasado_multinomial.csv',delimiter=',')
+df_atrasado_multinomial
+
+#Características das variáveis do dataset
+df_atrasado_multinomial.info()
+
+#Estatísticas univariadas
+df_atrasado_multinomial.describe()
+# %%
+# Note que a variável Y 'atrasado' está definida como objeto
+
+#Tabela de frequências absolutas da variável 'atrasado' com labels
+df_atrasado_multinomial['atrasado'].value_counts(sort=False)
+
+#Criando uma variável 'atrasado2' a partir da variável 'atrasado',
+#com labels iguais a 0, 1 e 2 e com tipo 'int' (poderia também ser do tipo
+#'float'), a fim de que seja possível estimar o modelo por meio
+#da função 'MNLogit'
+df_atrasado_multinomial.loc[df_atrasado_multinomial['atrasado']==
+                            'nao chegou atrasado',
+                            'atrasado2'] = 0 #categoria de referência
+df_atrasado_multinomial.loc[df_atrasado_multinomial['atrasado']==
+                            'chegou atrasado primeira aula',
+                            'atrasado2'] = 1
+df_atrasado_multinomial.loc[df_atrasado_multinomial['atrasado']==
+                            'chegou atrasado segunda aula',
+                            'atrasado2'] = 2
+
+df_atrasado_multinomial['atrasado2'] =\
+    df_atrasado_multinomial['atrasado2'].astype('int64') 
