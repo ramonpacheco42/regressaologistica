@@ -272,3 +272,5 @@ df_atrasado_multinomial.loc[df_atrasado_multinomial['atrasado']==
 
 df_atrasado_multinomial['atrasado2'] =\
     df_atrasado_multinomial['atrasado2'].astype('int64') 
+
+# %%
